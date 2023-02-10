@@ -75,3 +75,14 @@ def set_schedule_inactive(scheduler_id):
         """
     cur.execute(que)
     con.commit()
+
+
+# Удаляем неактивные напоминания
+def clean_inactive_schedule():
+    que = f"""
+        DELETE FROM reminder
+        WHERE 1 = 1 
+           AND is_active = 0    
+        """
+    cur.execute(que)
+    con.commit()
